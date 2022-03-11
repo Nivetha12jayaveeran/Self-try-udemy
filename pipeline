@@ -1,0 +1,36 @@
+name: sample
+on: [push]
+env:
+  SAMPLE: "This is a test run"
+jobs:
+  first-job:
+    name: First Job
+    runs-on: ubuntu-latest
+    outputs:
+      run_job: ${{ steps.first-step.outputs.name_act }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: firststep
+        id: first-step
+        run: |
+          echo "--------------------------------"
+          echo "------fisrt job----------------"
+          name_act=" GITHUB ACTIONS"
+          echo "::set-output name=name_act::$name_act"
+  second-job:
+    needs: [first-job]
+    name: Second JOB
+    runs-on: ubuntu-latest
+    steps:
+      - name: output from previous job
+        run: |
+          echo "This is the output run id: ${{ needs.first-job.outputs.run_job }}"
+          
+  third-job:
+    name: THird Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: no dependency
+        run: |
+          echo "HEY this is a test"
