@@ -23,9 +23,10 @@ jobs:
     steps:
       - name: output from previous job
         run: |
-          echo "This is the output run id: ${{ needs.first-job.outputs.run_job }}"
+          echo "This is the output"
           
   third-job:
+    needs: [second-job]
     name: THird Job
     runs-on: ubuntu-latest
     steps:
