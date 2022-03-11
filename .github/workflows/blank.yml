@@ -12,10 +12,10 @@ jobs:
       - name: firststep
         id: first-step
         run: |
-          echo "--------------------------------"
+          echo "-------------gawdfhvahfa-------------------"
           echo "------fisrt job----------------"
           name_act=" GITHUB ACTIONS"
-          echo "::set-output name=name_act::$name_act"
+          
   second-job:
     needs: [first-job]
     name: Second JOB
